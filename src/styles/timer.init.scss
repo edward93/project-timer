@@ -1,0 +1,13 @@
+@import "button.scss";
+
+.timer-init-container {
+  display: grid;
+  grid-template: 1fr 1fr /1fr;
+
+  // place-: center;
+
+  & .timer-init-actions {
+    display: flex;
+    justify-content: center;
+  }
+}

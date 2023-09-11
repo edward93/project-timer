@@ -1,3 +1,5 @@
+@import "color.scss";
+
 @font-face {
   font-family: "Roboto-Mono";
   src: local("Roboto-Mono"), url("../fonts//RobotoMono/RobotoMono-VariableFont_wght.ttf");
@@ -16,9 +18,9 @@ html {
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: dark light;
+  // color: $secondary-color;
+  // background-color: $main-color;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -46,16 +48,37 @@ body {
   }
 }
 
+// :root {
+//   --font-color: $main-color;
+//   --link-color:#1C75B9;
+//   --link-white-color:#fff;
+//   --bg-color: $secondary-color;
+// }
+// //dark theme
+// [data-theme="dark"] {
+//   --font-color: $secondary-color;
+//   --link-color:#0a86da;
+//   --link-white-color:#c1bfbd;
+//   --bg-color: $main-color;
+// }
+
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: $main-color;
+    background-color: $secondary-color;
   }
   a:hover {
     color: #747bff;
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: $secondary-color;
+    background-color: $main-color;
   }
 }

@@ -11,6 +11,7 @@ const HeaderComponent = () => {
             <h1>Timer</h1>
           </Link>
         </div>
+        {/* <a href="https://www.flaticon.com/free-icons/timer" title="timer icons">Timer icons created by Freepik - Flaticon</a> */}
       </div>
       <div className="header-right"></div>
     </div>

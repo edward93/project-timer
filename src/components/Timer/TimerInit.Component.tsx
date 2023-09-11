@@ -2,7 +2,9 @@ import { useState } from "react";
 import { defaultTimer, toTimer } from "../../services/timer.Utils";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import "../../styles/timer.init.scss";
 
+// TODO: add styles and the ability to set the timer
 /**
  * Component to set desired timer and start it
  *
@@ -42,8 +44,8 @@ const TimerInitComponent = () => {
         H: {time.hours} | Mins: {time.mins} | Secs: {time.secs}
       </section>
       <div className="timer-init-actions">
-        <button className="timer-start-btn" onClick={onStartTimerClick}>
-          START
+        <button className="timer-start-btn ghost-btn" onClick={onStartTimerClick}>
+          Start
         </button>
       </div>
     </div>

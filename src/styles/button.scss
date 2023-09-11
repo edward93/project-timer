@@ -1,0 +1,42 @@
+@import "color.scss";
+
+@mixin ghost-btn {
+  background: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-weight: 800;
+  font-size: 0.7rem;
+
+  color: $secondary-color;
+
+  border: 0.2rem solid;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+  &:hover:enabled {
+    background-color: lighten($color: $main-color, $amount: 2);
+    color: lighten($color: $secondary-color, $amount: 2);
+  }
+
+  &:focus:enabled {
+    outline: none;
+  }
+
+  &:active:enabled {
+    border: 0.2rem solid;
+    border-color: inherit;
+    background-color: inherit;
+  }
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+}
+
+button.ghost-btn {
+  @include ghost-btn();
+  // display: flex;
+  // flex: 1 0 0;
+}
