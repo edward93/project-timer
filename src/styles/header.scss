@@ -1,0 +1,28 @@
+@import "./common.scss";
+
+.app-header {
+  display: grid;
+  grid-template: 1fr/ 1fr 1fr 1fr;
+  
+  justify-content: center;
+
+  padding: 0 1rem;
+
+  text-transform: uppercase;
+
+  & .header-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    max-height: $header-height;
+
+    & a {
+      height: 100%;
+    }
+
+    & img {
+      max-height: 100%;
+    }
+  }
+}

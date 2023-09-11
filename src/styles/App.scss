@@ -1,0 +1,30 @@
+@import "./common.scss";
+
+.app-container {
+  display: flex;
+  flex: 1;
+
+  flex-direction: column;
+  min-height: 100vh;
+
+  & .screen-space {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    height: 100vh;
+
+    & > .app-content {
+      position: relative;
+      display: flex;
+      flex: 1 1 0;
+      flex-wrap: wrap;
+
+      max-height: calc(100vh - $header-height);
+
+      //tmp
+      // justify-content: center;
+      // align-items: center;
+      place-content: center;
+    }
+  }
+}
