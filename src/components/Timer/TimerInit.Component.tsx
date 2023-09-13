@@ -15,7 +15,7 @@ const TimerInitComponent = () => {
   const navigate = useNavigate();
 
   // editable timer
-  const [timer, setTimer] = useState(defaultTimer);
+  const [timer, ] = useState(defaultTimer);
 
   /**
    * Starts the timer
