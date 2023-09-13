@@ -11,7 +11,7 @@ export type TimerMin = number & Range<0, 60>;
 export type TimerSec = Range<0, 60>;
 
 export type Timer = {
-  hours: number; //TimerHour;
-  mins: number; // TimerMin;
-  secs: number; //TimerSec;
+  hours: number | string; //TimerHour;
+  mins: number | string; // TimerMin;
+  secs: number | string; //TimerSec;
 };

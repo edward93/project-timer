@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { AccurateInterval, AccurateIntervalType } from "../../services/AccurateInterval";
 import { useParams } from "react-router-dom";
 import { defaultTimer, toTimer } from "../../services/timer.Utils";
+import "../../styles/timer.scss";
 
 /** Accurate interval */
 let interval: AccurateIntervalType;
@@ -67,11 +68,26 @@ const TimerComponent = () => {
     console.log("TIME IS UP");
   };
 
-  const time = toTimer(timer);
+  const time = toTimer(timer, true);
   return (
     <div className="timer-container">
       <section className="timer">
-        H: {time.hours} | Mins: {time.mins} | Secs: {time.secs}
+        <section className="timer-digits">
+          <div className="timer-hour timer-digits">
+            <h1>{time.hours}</h1>
+          </div>
+          <div className="timer-mins timer-digits">
+            <h1>{time.mins}</h1>
+          </div>
+          <div className="timer-secs timer-digits">
+            <h1>{time.secs}</h1>
+          </div>
+        </section>
+        <section className="timer-labels">
+          <div className="timer-hour-label timer-label">Hours</div>
+          <div className="timer-min-label timer-label">Mins</div>
+          <div className="timer-sec-label timer-label">Secs</div>
+        </section>
       </section>
     </div>
   );
