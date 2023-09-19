@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AccurateInterval, AccurateIntervalType } from "../../services/AccurateInterval";
 import { useParams } from "react-router-dom";
 import { defaultTimer, toTimer } from "../../services/timer.Utils";
 import "../../styles/timer.scss";
+import { useKeepTabAlive } from "../../services/hooks/useKeepTabAlive";
 
 /** Accurate interval */
 let interval: AccurateIntervalType;
@@ -20,6 +21,9 @@ const TimerComponent = () => {
   // get start and end params from the url
   const { tStart, tEnd } = useParams();
 
+  // keep the tab alive when timer is running
+  // const [cancel] = useKeepTabAlive();
+
   // actual start and end
   const start = tStart ? +tStart : Date.now();
   const end = tEnd ? +tEnd : Date.now() + defaultTimer;
@@ -28,8 +32,25 @@ const TimerComponent = () => {
   const [timer, setTimer] = useState(end - Math.max(start, Date.now()));
   // is this timer valid
   const isValid = timer > 0;
+
   // init the timer
   useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        // Tab is now visible (active)
+        // Add your code to restart the timer or perform any necessary actions
+        console.log("Tab is now active. Restarting timer...");
+        setTimer(end - Date.now());
+      } else {
+        // Tab is now in the background (asleep)
+        // You can pause or stop your timer here if needed
+        console.log("Tab is now in the background.");
+      }
+    };
+
+    // Add an event listener to detect visibility changes
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     // start the timer only if it's valid
     if (isValid) {
       // init interval
@@ -39,7 +60,10 @@ const TimerComponent = () => {
       interval.start();
 
       // cleanup
-      return () => interval.stop();
+      return () => {
+        interval.stop();
+        document.removeEventListener("visibilitychange", handleVisibilityChange);
+      };
     }
   }, []);
 
@@ -66,6 +90,7 @@ const TimerComponent = () => {
    */
   const onTimeUp = () => {
     console.log("TIME IS UP");
+    // cancel();
   };
 
   const time = toTimer(timer, true);

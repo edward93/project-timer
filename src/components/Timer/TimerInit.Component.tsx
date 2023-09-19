@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../styles/timer.init.scss";
 
-// TODO: add styles and the ability to set the timer
+// TODO: add the ability to set the timer
 /**
  * Component to set desired timer and start it
  *
@@ -15,7 +15,7 @@ const TimerInitComponent = () => {
   const navigate = useNavigate();
 
   // editable timer
-  const [timer, ] = useState(defaultTimer);
+  const [timer] = useState(defaultTimer);
 
   /**
    * Starts the timer
