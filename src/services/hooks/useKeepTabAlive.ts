@@ -11,12 +11,10 @@ let audio: HTMLAudioElement | undefined;
  */
 export const useKeepTabAlive = () => {
   // const audio = useRef<HTMLAudioElement>();
-  let isPlaying = false;
 
   const cancel = () => {
     if (audio) {
       audio.load();
-      isPlaying = false;
       // free up the resource
       audio = undefined;
     }
@@ -36,11 +34,9 @@ export const useKeepTabAlive = () => {
     audio
       .play()
       .then(() => {
-        isPlaying = true;
       })
       .catch((error) => {
         console.error("This error can probably ignored - ", error);
-        isPlaying = false;
       });
 
     // when unmounted, cancel it

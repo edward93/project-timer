@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { AccurateInterval, AccurateIntervalType } from "../../services/AccurateInterval";
 import { useParams } from "react-router-dom";
 import { defaultTimer, toTimer } from "../../services/timer.Utils";
 import "../../styles/timer.scss";
-import { useKeepTabAlive } from "../../services/hooks/useKeepTabAlive";
 
 /** Accurate interval */
 let interval: AccurateIntervalType;
