@@ -36,12 +36,33 @@ const TimerInitComponent = () => {
   };
 
   // formatted timer
-  const time = toTimer(timer);
+  const time = toTimer(timer, true);
 
   return (
     <div className="timer-init-container">
-      <section className="timer-init-display">
-        H: {time.hours} | Mins: {time.mins} | Secs: {time.secs}
+      <section className="timer">
+        <section className="timer-digits">
+          <div className="timer-hour timer-digits">
+            <div className="timer-adj-arrow arrow-up"></div>
+            <h1>{time.hours}</h1>
+            <div className="timer-adj-arrow arrow-down"></div>
+          </div>
+          <div className="timer-mins timer-digits">
+            <div className="timer-adj-arrow arrow-up"></div>
+            <h1>{time.mins}</h1>
+            <div className="timer-adj-arrow arrow-down"></div>
+          </div>
+          <div className="timer-secs timer-digits">
+            <div className="timer-adj-arrow arrow-up"></div>
+            <h1>{time.secs}</h1>
+            <div className="timer-adj-arrow arrow-down"></div>
+          </div>
+        </section>
+        <section className="timer-labels">
+          <div className="timer-hour-label timer-label">Hours</div>
+          <div className="timer-min-label timer-label">Mins</div>
+          <div className="timer-sec-label timer-label">Secs</div>
+        </section>
       </section>
       <div className="timer-init-actions">
         <button className="timer-start-btn ghost-btn" onClick={onStartTimerClick}>

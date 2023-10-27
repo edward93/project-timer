@@ -1,1 +1,9 @@
 $header-height: 3rem;
+
+.clickable {
+  cursor: pointer;
+}
+
+@mixin clickable {
+  cursor: pointer;
+}
