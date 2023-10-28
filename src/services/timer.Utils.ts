@@ -20,5 +20,12 @@ export const toTimer = (ms: number, format: boolean = false): Timer => {
   return result;
 };
 
+/** Time enum */
+export enum TimeEnum {
+  Hour = 1,
+  Min = 2,
+  Sec = 3,
+}
+
 /** Default timer */
 export const defaultTimer = 5000 * 60; // 5mins;

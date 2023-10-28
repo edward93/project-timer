@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { defaultTimer, toTimer } from "../../services/timer.Utils";
+import { TimeEnum, defaultTimer, toTimer } from "../../services/timer.Utils";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../../styles/timer.init.scss";
@@ -15,7 +15,7 @@ const TimerInitComponent = () => {
   const navigate = useNavigate();
 
   // editable timer
-  const [timer] = useState(defaultTimer);
+  const [timer, setTimer] = useState(defaultTimer);
 
   /**
    * Starts the timer
@@ -36,12 +36,61 @@ const TimerInitComponent = () => {
   };
 
   // formatted timer
-  const time = toTimer(timer);
+  const time = toTimer(timer, true);
+
+  /**
+   * Increments Hours, Mins or Seconds
+   * @param timeEnum - Which part to increment
+   */
+  const incrementTimer = (timeEnum: TimeEnum) => {
+    let increment = 1;
+    if (timeEnum === TimeEnum.Hour) increment *= 60 * 60 * 1000; // 1hour in ms
+    if (timeEnum === TimeEnum.Min) increment *= 60 * 1000; // 1 min in ms
+    if (timeEnum === TimeEnum.Sec) increment *= 1000; // 1sec in ms
+
+    const newTimer = timer + increment;
+    setTimer(newTimer);
+  };
+
+  /**
+   * Decrement Hours, Mins or Seconds
+   * @param timeEnum - Which part to increment
+   */
+  const decrementTimer = (timeEnum: TimeEnum) => {
+    let increment = 1;
+    if (timeEnum === TimeEnum.Hour) increment *= 60 * 60 * 1000; // 1hour in ms
+    if (timeEnum === TimeEnum.Min) increment *= 60 * 1000; // 1 min in ms
+    if (timeEnum === TimeEnum.Sec) increment *= 1000; // 1sec in ms
+    
+    const newTimer = timer - increment <= 0 ? 0 : timer - increment;
+    setTimer(newTimer);
+  };
 
   return (
     <div className="timer-init-container">
-      <section className="timer-init-display">
-        H: {time.hours} | Mins: {time.mins} | Secs: {time.secs}
+      <section className="timer">
+        <section className="timer-digits">
+          <div className="timer-hour timer-digits">
+            <div className="timer-adj-arrow arrow-up"onClick={() => incrementTimer(TimeEnum.Hour)}></div>
+            <h1>{time.hours}</h1>
+            <div className="timer-adj-arrow arrow-down"onClick={() => decrementTimer(TimeEnum.Hour)}></div>
+          </div>
+          <div className="timer-mins timer-digits">
+            <div className="timer-adj-arrow arrow-up" onClick={() => incrementTimer(TimeEnum.Min)}></div>
+            <h1>{time.mins}</h1>
+            <div className="timer-adj-arrow arrow-down"onClick={() => decrementTimer(TimeEnum.Min)}></div>
+          </div>
+          <div className="timer-secs timer-digits">
+            <div className="timer-adj-arrow arrow-up" onClick={() => incrementTimer(TimeEnum.Sec)}></div>
+            <h1>{time.secs}</h1>
+            <div className="timer-adj-arrow arrow-down" onClick={() => decrementTimer(TimeEnum.Sec)}></div>
+          </div>
+        </section>
+        <section className="timer-labels">
+          <div className="timer-hour-label timer-label">Hours</div>
+          <div className="timer-min-label timer-label">Mins</div>
+          <div className="timer-sec-label timer-label">Secs</div>
+        </section>
       </section>
       <div className="timer-init-actions">
         <button className="timer-start-btn ghost-btn" onClick={onStartTimerClick}>
